@@ -1,18 +1,20 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "../page.css";
+import NavBar from "../../components/Navbar/Navbar";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
+    <div>
+      <NavBar />
+      <div style={{ display: 'flex' }}>
+        {/* <Image
           className={styles.logo}
           src="https://nextjs.org/icons/next.svg"
           alt="Next.js logo"
           width={180}
           height={38}
           priority
-        />
+        /> */}
         <ol>
           <li>
             Get started by editing <code>src/app/page.js</code>.
@@ -45,7 +47,7 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-      </main>
+      </div>
       <footer className={styles.footer}>
         <a
           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
