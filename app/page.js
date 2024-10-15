@@ -6,7 +6,7 @@ import HomeButton from "../components/HomeButton/HomeButton";
 import Image from 'next/image';
 
 export default function Home() {
-  return (
+    return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <NavBar />
       <div style={{ display: 'flex', flexGrow: 1, flexDirection: "column", justifyContent: 'center', paddingInline: 50 }}>
