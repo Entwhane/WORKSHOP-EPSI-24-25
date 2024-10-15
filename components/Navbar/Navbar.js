@@ -44,34 +44,33 @@ function NavBar() {
       <Grid container flexDirection="row">
         <Grid size={4}>
           <Grid container flexDirection="row">
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <img src={"/images/logo.png"} width="20" height="20" alt="Logo" style={{ margin: 10 }}/>
             <Typography
               variant="h6"
               noWrap
               component="a"
-              href="#app-bar-with-responsive-menu"
+              href="/"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
+                fontFamily: 'ClashDisplay-Regular',
                 color: 'inherit',
                 textDecoration: 'none',
+                fontSize: 24
               }}
             >
               
-              ETHIQ
+              EthiQ
             </Typography>
           </Grid>
         </Grid>
-        <Grid size={4}>
+        <Grid>
           <Grid container flexDirection="row" justifyContent="center">
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ color: 'white', display: 'block' }}
+                sx={{ color: 'white', display: 'block', paddingLeft: 5, paddingRight: 5 }}
               >
                 <Typography variant="body2" color="black">
                   {page}
