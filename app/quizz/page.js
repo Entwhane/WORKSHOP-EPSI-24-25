@@ -59,7 +59,8 @@ export default function Home() {
               style={{
                 background: 'linear-gradient(161.06deg, #063F50 40.32%, #7FBFC2 70.2%, #FDFCDC 100.08%)',
                 WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
+                WebkitTextFillColor: 'transparent',
+                fontWeight: "900"
               }}
             >
               {" "}cyber harcèlement
