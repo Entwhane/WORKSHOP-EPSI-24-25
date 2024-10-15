@@ -72,7 +72,7 @@ function NavBar() {
                 onClick={handleCloseNavMenu}
                 sx={{ color: 'white', display: 'block', paddingLeft: 5, paddingRight: 5 }}
               >
-                <Typography variant="body2" color="black">
+                <Typography variant="body2" color="black" fontFamily="ClashDisplay-Regular">
                   {page}
                 </Typography>
               </Button>
@@ -81,13 +81,13 @@ function NavBar() {
         </Grid>
         <Grid size={4}>
           <Grid container flexDirection="row" justifyContent="flex-end" spacing={2}>
-            <Button color='#F07167' sx={{ backgroundColor: "#F07167", borderRadius: 1 }}>
-              <Typography variant="body2" color="white" fontWeight="900">
+            <Button color='#F07167' sx={{ backgroundColor: "#F07167", borderRadius: 1, paddingLeft: 2, paddingRight: 2 }}>
+              <Typography variant="body2" color="white" fontWeight="900" fontFamily="ClashDisplay-Regular">
                 connexion
               </Typography>
             </Button>
-            <Button color='#0081A7' sx={{ backgroundColor: "#0081A7", borderRadius: 1 }}>
-              <Typography variant="body2" color="white" fontWeight="900">
+            <Button color='#0081A7' sx={{ backgroundColor: "#0081A7", borderRadius: 1, paddingLeft: 2, paddingRight: 2}}>
+              <Typography variant="body2" color="white" fontWeight="900" fontFamily="ClashDisplay-Regular">
                 inscription
               </Typography>
             </Button>
