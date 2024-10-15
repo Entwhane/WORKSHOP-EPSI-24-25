@@ -1,4 +1,3 @@
-import styles from "./NavBarle.css";
 import NavBar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import Grid from "@mui/material/Grid2";
