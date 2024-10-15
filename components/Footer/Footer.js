@@ -3,11 +3,10 @@
 import React from 'react';
 import { Box, Typography, IconButton, Button, TextField, Divider, Container } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import { Facebook, Twitter, Instagram, GitHub } from '@mui/icons-material';
 
 const Footer = () => {
   return (
-    <Container maxWidth="xl" style={{ backgroundColor: 'black', padding: 10 }}>
+    <Container maxWidth="xl" style={{ backgroundColor: 'black', padding: 20, marginTop: 100 }}>
       <Grid container justifyContent={"space-between"} spacing={12}>
         <Grid size={6}>
           <Typography variant="body2" color="white" align="left">

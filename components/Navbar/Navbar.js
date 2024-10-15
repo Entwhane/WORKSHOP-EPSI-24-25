@@ -44,36 +44,35 @@ function NavBar() {
       <Grid container flexDirection="row">
         <Grid size={{ xs: 11, md: 4 }}>
           <Grid container flexDirection="row">
-            <img src="/images/logo.png" alt="Logo" style={{ marginRight: 8}}/>
+            <img src={"/images/logo.png"} width="20" height="20" alt="Logo" style={{ margin: 10 }}/>
             <Typography
               variant="h6"
               noWrap
               component="a"
-              href="#app-bar-with-responsive-menu"
+              href="/"
               sx={{
                 mr: 2,
-                display: 'flex',
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'ClashDisplay-Regular',
                 color: 'inherit',
                 textDecoration: 'none',
+                fontSize: 24
               }}
             >
-
+              
               EthiQ
             </Typography>
           </Grid>
         </Grid>
-        <Grid size={4} sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
+        <Grid>
           <Grid container flexDirection="row" justifyContent="center">
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ color: 'white', display: 'block' }}
+                sx={{ color: 'white', display: 'block', paddingLeft: 5, paddingRight: 5 }}
               >
-                <Typography variant="body2" color="black">
+                <Typography variant="body2" color="black" fontFamily="ClashDisplay-Regular">
                   {page}
                 </Typography>
               </Button>
@@ -82,14 +81,14 @@ function NavBar() {
         </Grid>
         <Grid size={4} sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
           <Grid container flexDirection="row" justifyContent="flex-end" spacing={2}>
-            <Button color='#F07167' style={{ backgroundColor: "#F07167", borderRadius: 5, paddingBlock: 5, paddingInline: 20 }}>
-              <Typography variant="body2" color="white" fontWeight="900">
-                CONNEXION
+            <Button color='#F07167' sx={{ backgroundColor: "#F07167", borderRadius: 1, paddingLeft: 2, paddingRight: 2 }}>
+              <Typography variant="body2" color="white" fontWeight="900" fontFamily="ClashDisplay-Regular">
+                connexion
               </Typography>
             </Button>
-            <Button color='#0081A7' style={{ backgroundColor: "#0081A7", borderRadius: 5, paddingBlock: 5, paddingInline: 20 }}>
-              <Typography variant="body2" color="white" fontWeight="900">
-                INSCRIPTION
+            <Button color='#0081A7' sx={{ backgroundColor: "#0081A7", borderRadius: 1, paddingLeft: 2, paddingRight: 2}}>
+              <Typography variant="body2" color="white" fontWeight="900" fontFamily="ClashDisplay-Regular">
+                inscription
               </Typography>
             </Button>
           </Grid>
