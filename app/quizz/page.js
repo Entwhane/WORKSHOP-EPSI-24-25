@@ -1,97 +1,67 @@
 import Image from "next/image";
 import styles from "../page.css";
 import NavBar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer";
+import Grid from "@mui/material/Grid2";
+import { Typography } from "@mui/material";
+import QuizzDetails from "../../components/QuizzDetails/QuizzDetail";
 
 export default function Home() {
+  const quizz = [
+    {
+      id: 1,
+      title: "Combien de personnes sont touchées par le cyber harcèlement chaque année ?",
+      answers: [
+        {
+          id: 1,
+          title: "12000",
+          correct: true,
+        },
+        {
+          id: 2,
+          title: "25",
+          correct: false,
+        },
+        {
+          id: 3,
+          title: "1000502",
+          correct: false,
+        },
+      ]
+    }
+  ]
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <NavBar />
-      <div style={{ display: 'flex' }}>
-        {/* <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        /> */}
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+      <Grid
+        container
+        direction="column"
+        justifyContent="flex-start"
+        alignItems="center"
+        style={{ width: "100%", backgroundColor: '#00000011', height: "100%", flexGrow: 1 }}
+        spacing={0}
+        id='contenu'
+      >
+        <div
+          style={{
+            padding: 20,
+            paddingInline: 50,
+            width: "100%",
+            maxWidth: 950,
+            backgroundColor: "white"
+          }}
+        >
+          <Typography fontSize={32} style={{ marginBlock: 50}}>20 questions sur le <Typography component={"span"} fontSize={32} className="test">cyber harcèlement</Typography></Typography>
+          <Grid container style={{ marginTop: 20, }}>
+            {quizz.map((question) => (
+              <Grid key={question.id} size={12} style={{ marginBlock: 20 }}>
+                <QuizzDetails quizz={question} />
+              </Grid>
+            ))}
+          </Grid>
         </div>
-      </div>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </Grid>
+      <Footer />
     </div>
   );
 }

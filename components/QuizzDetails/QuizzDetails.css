@@ -1,0 +1,26 @@
+
+.quizzQuestionTitle {
+    font-family: monospace;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 17.16px;
+    text-align: left;
+    padding-block: 30px;
+}
+
+.quizzQuestionAnswer {
+    border: 1px solid #00AFB9;
+    gap: 0px;
+    border-radius: 7px;
+    padding: 10px;
+    margin-block: 15px
+}
+
+.quizzQuestionAnswerText {
+    font-family: monospace;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 17.16px;
+    text-align: center;   
+    color: #000; 
+}

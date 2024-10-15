@@ -17,7 +17,7 @@ import Grid from '@mui/material/Grid2';
 import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = ['Thèmes', 'FAQ', 'À propos'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Thèmes', 'FAQ', 'À propos', 'Account'];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -42,9 +42,9 @@ function NavBar() {
   return (
     <Container maxWidth="xl" style={{ backgroundColor: 'white', padding: 10 }}>
       <Grid container flexDirection="row">
-        <Grid size={4}>
+        <Grid size={{ xs: 11, md: 4 }}>
           <Grid container flexDirection="row">
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <img src="/images/logo.png" alt="Logo" style={{ marginRight: 8}}/>
             <Typography
               variant="h6"
               noWrap
@@ -52,7 +52,7 @@ function NavBar() {
               href="#app-bar-with-responsive-menu"
               sx={{
                 mr: 2,
-                display: { xs: 'none', md: 'flex' },
+                display: 'flex',
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
@@ -60,12 +60,12 @@ function NavBar() {
                 textDecoration: 'none',
               }}
             >
-              
-              ETHIQ
+
+              EthiQ
             </Typography>
           </Grid>
         </Grid>
-        <Grid size={4}>
+        <Grid size={4} sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
           <Grid container flexDirection="row" justifyContent="center">
             {pages.map((page) => (
               <Button
@@ -80,19 +80,53 @@ function NavBar() {
             ))}
           </Grid>
         </Grid>
-        <Grid size={4}>
+        <Grid size={4} sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
           <Grid container flexDirection="row" justifyContent="flex-end" spacing={2}>
-            <Button color='#F07167' sx={{ backgroundColor: "#F07167", borderRadius: 1 }}>
+            <Button color='#F07167' style={{ backgroundColor: "#F07167", borderRadius: 5, paddingBlock: 5, paddingInline: 20 }}>
               <Typography variant="body2" color="white" fontWeight="900">
-                connexion
+                CONNEXION
               </Typography>
             </Button>
-            <Button color='#0081A7' sx={{ backgroundColor: "#0081A7", borderRadius: 1 }}>
+            <Button color='#0081A7' style={{ backgroundColor: "#0081A7", borderRadius: 5, paddingBlock: 5, paddingInline: 20 }}>
               <Typography variant="body2" color="white" fontWeight="900">
-                inscription
+                INSCRIPTION
               </Typography>
             </Button>
           </Grid>
+        </Grid>
+        <Grid size={1} sx={{ flexGrow: 1, display: { xs: 'block', md: 'none' } }}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleOpenNavMenu}
+            color="inherit"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorElNav}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
+            sx={{ display: { xs: 'block', md: 'none' } }}
+          >
+            {settings.map((page) => (
+              <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
         </Grid>
       </Grid>
     </Container >
