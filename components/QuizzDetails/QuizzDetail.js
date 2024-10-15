@@ -9,11 +9,11 @@ export default function QuizzDetails(props) {
     const { quizz } = props
 
     return (
-        <div className="column" style={{ borderRadius: 5, borderStyle: "solid", paddingInline: 50, paddingBlock: 30 }}>
+        <div className="col" style={{ borderRadius: 5, borderStyle: "solid", paddingInline: 50, paddingBlock: 30 }}>
             <Typography className="quizzQuestionTitle">
                 {quizz.title}
             </Typography>
-            <div className="column">
+            <div className="col">
                 {quizz.answers.map((answer) => (
                     <Button key={answer.id} className="quizzQuestionAnswer">
                         <Typography className="quizzQuestionAnswerText">

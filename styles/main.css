@@ -107,19 +107,14 @@ a {
   }
 }
 
-.column {
+.col {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .row {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
-
-.test {
-  background: linear-gradient(161.06deg, #063F50 40.32%, #7FBFC2 70.2%, #FDFCDC 100.08%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-

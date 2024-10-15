@@ -51,7 +51,20 @@ export default function Home() {
             backgroundColor: "white"
           }}
         >
-          <Typography fontSize={32} style={{ marginBlock: 50}}>20 questions sur le <Typography component={"span"} fontSize={32} className="test">cyber harcèlement</Typography></Typography>
+          <Typography fontSize={32} style={{ marginBlock: 50 }} fontFamily={"ClashDisplay-Regular"}>
+            20 questions sur le
+            <Typography
+              component={"span"}
+              fontSize={32}
+              style={{
+                background: 'linear-gradient(161.06deg, #063F50 40.32%, #7FBFC2 70.2%, #FDFCDC 100.08%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
+            >
+              {" "}cyber harcèlement
+            </Typography>
+          </Typography>
           <Grid container style={{ marginTop: 20, }}>
             {quizz.map((question) => (
               <Grid key={question.id} size={12} style={{ marginBlock: 20 }}>
