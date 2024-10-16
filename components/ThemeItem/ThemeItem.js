@@ -1,19 +1,19 @@
 import React from 'react';
-
 import "./ThemeItem.css";
-import {borderColor} from "@mui/system";
+import Link from 'next/link';
+import { lowerCase } from 'lodash';
 
 const ThemeItem = ({item, index}) => {
+    
     return (
         <div className={"item"} key={index}>
             <div className={"itemTop"}>
-                <div className={"title"}>{item.title}</div>
+                <div className={"title"}>{item.theme_title}</div>
                 <div className={"length"}>{item.length}</div>
             </div>
             <div className={"itemBottom"}>
                 <div className={"format"}>{item.format}<br/>{item.time}</div>
-                <div className={"btn"}>Commencer</div>
-
+                <Link className='btn' href={`/themes/${item.theme_id}/${lowerCase(item.format)}`}>Commencer</Link>
             </div>
         </div>
     );
