@@ -1,0 +1,120 @@
+.body__register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2% 10%;
+    padding: 20px 10px;
+    background: white;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-family: ClashDisplay-Regular, Helvetica, sans-serif;
+}
+
+.register__title {
+    font-size: 36px;
+    font-weight: 700;
+    padding: 20px 10px;
+}
+
+.register__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+.register__button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #0081A7 0%, #F07167 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin: 20px 0;
+    font-size: 18px;
+    height: 50px;
+}
+
+.register__button:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.link__login a {
+    text-decoration: underline;
+    color: #0081A7;
+}
+
+.link__login a:hover {
+    color: #F07167;
+}
+
+.register__level {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 10px;
+    align-self: center;
+    justify-self: center;
+    border-radius: 5px;
+    border:none;
+}
+
+.register__level__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.register__level__group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 5px
+}
+
+.register__level__group input {
+    margin: 0 10px;
+}
+
+.register__section__title {
+    font-size: 24px;
+}
+
+.register__section {
+    width: 100%;
+}
+
+.register__section:not(:last-child){
+    margin: 20px 0 15px 0;
+}
+
+.register__section:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register__section__identite, .register__section__mdp {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.register__section__identite input, .register__section__mdp input {
+    max-width: 200px;
+}
+
+.register__section__title {
+    text-align: left;
+    width: 100%;
+}

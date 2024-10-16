@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid2';
 
 const Footer = () => {
   return (
-    <Container maxWidth="xl" style={{ backgroundColor: 'black', padding: 20, marginTop: 100 }}>
+    <Container maxWidth="xl" style={{ backgroundColor: 'black', padding: 20 }}>
       <Grid container justifyContent={"space-between"} spacing={12}>
         <Grid size={6}>
           <Typography variant="body2" color="white" align="left">
