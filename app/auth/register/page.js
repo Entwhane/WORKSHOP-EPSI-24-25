@@ -53,7 +53,7 @@ const Page = () => {
                 </div>
 
                 <div className={"register__section"}>
-                    <button className={"register__button"}>Register</button>
+                    <button className={"register__button"}>Se connecter</button>
                     <div className={"link__login"}>Déjà membre ? <a href={"/auth/login"}>Connexion</a></div>
                 </div>
             </form>
