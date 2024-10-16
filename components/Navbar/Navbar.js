@@ -1,26 +1,21 @@
 'use client'
 
 import React, { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Grid2';
-import AdbIcon from '@mui/icons-material/Adb';
 import Link from "next/link";
+import Image from 'next/image';
 
 const pages = [
-  {name: 'Thèmes', link: '/themes'},
-  {name: 'FAQ', link: '/faq'},
-  {name: 'À propos', link: '/about'}
+  { name: 'Thèmes', link: '/themes' },
+  { name: 'FAQ', link: '/faq' },
+  { name: 'À propos', link: '/about' }
 ]
 
 const settings = ['Thèmes', 'FAQ', 'À propos', 'Account'];
@@ -50,7 +45,7 @@ function NavBar() {
       <Grid container flexDirection="row" justifyContent={"space-between"} alignItems={"center"}>
         <Grid size={{ xs: 11, md: 4 }}>
           <Grid container flexDirection="row">
-            <img src={"/images/logo.png"} width="20" height="20" alt="Logo" style={{ margin: 10 }} />
+            <Image src="/images/logo.png" alt="Logo" width={20} height={20} style={{ margin: 10 }} />
             <Typography
               variant="h6"
               noWrap
