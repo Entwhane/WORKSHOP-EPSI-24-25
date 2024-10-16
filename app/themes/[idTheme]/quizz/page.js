@@ -1,14 +1,27 @@
-import Image from "next/image";
-import styles from "../page.css";
-import NavBar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
+'use client'
+
+import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
 import { Typography } from "@mui/material";
-import QuizzDetails from "../../components/QuizzDetails/QuizzDetail";
-import HomeButton from "../../components/HomeButton/HomeButton";
-import Separator from "../../components/Separator/Separator";
+import QuizzDetails from "../../../../components/QuizzDetails/QuizzDetail";
+import HomeButton from "../../../../components/HomeButton/HomeButton";
+import Separator from "../../../../components/Separator/Separator";
 
-export default function QuizzPage() {
+export default function QuizzPage(props) {
+  const { idTheme } = props
+
+  // const [posts, setPosts] = useState(null)
+ 
+  // useEffect(() => {
+  //   async function fetchPosts() {
+  //     let res = await fetch('https://api.vercel.app/blog')
+  //     let data = await res.json()
+  //     setPosts(data)
+  //   }
+  //   fetchPosts()
+  // }, [])
+ 
+  // if (!posts) return <div>Loading...</div>
 
   const quizz = [
     {

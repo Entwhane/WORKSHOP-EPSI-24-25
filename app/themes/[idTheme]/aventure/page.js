@@ -1,15 +1,9 @@
 'use client'
 
-import Image from "next/image";
-import styles from "../page.css";
-import NavBar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
 import Grid from "@mui/material/Grid2";
 import { Typography } from "@mui/material";
-import QuizzDetails from "../../components/QuizzDetails/QuizzDetail";
-import HomeButton from "../../components/HomeButton/HomeButton";
-import Separator from "../../components/Separator/Separator";
-import WebView from "../../components/Webview/Webview";
+
+import WebView from "../../../../components/Webview/Webview";
 
 export default function AdventurePage() {
 
