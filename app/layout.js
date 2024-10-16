@@ -4,12 +4,12 @@ import NavBar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "../public/fonts/clash_display_complete/Fonts/WEB/fonts/ClashDisplay-Regular.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "../public/fonts/clash_display_complete/Fonts/WEB/fonts/ClashDisplay-Regular.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });

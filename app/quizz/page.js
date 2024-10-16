@@ -8,7 +8,7 @@ import QuizzDetails from "../../components/QuizzDetails/QuizzDetail";
 import HomeButton from "../../components/HomeButton/HomeButton";
 import Separator from "../../components/Separator/Separator";
 
-export default function Home() {
+export default function QuizzPage() {
 
   const quizz = [
     {
@@ -36,7 +36,6 @@ export default function Home() {
 
   return (
     <div className="col">
-      <NavBar />
       <Grid
         container
         direction="column"
@@ -111,7 +110,6 @@ export default function Home() {
           </div>
         </div>
       </Grid>
-      <Footer />
     </div>
   );
 }
