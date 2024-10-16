@@ -48,7 +48,7 @@ export default function Home() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid container size={9} justifyContent={"center"} alignItems={"center"} spacing={4} style={{ marginBlock: 20, marginTop: 150, marginBottom: 100 }}>
+        <Grid container size={9} justifyContent={"center"} alignItems={"center"} spacing={4} style={{ marginBlock: 20, marginTop: 150, marginBottom: 200 }}>
           <Grid size={{ xs: 11, sm: 10, md: 3 }}>
             <HomeButton title="127H" subtitle="De formation disponibles" color="#0081A7" />
           </Grid>
