@@ -16,7 +16,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Grid2';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Thèmes', 'FAQ', 'À propos'];
+const pages = [
+  {name: 'Thèmes', link: '/themes'},
+  {name: 'FAQ', link: '/faq'},
+  {name: 'À propos', link: '/about'}
+]
+
 const settings = ['Thèmes', 'FAQ', 'À propos', 'Account'];
 
 function NavBar() {
@@ -66,12 +71,14 @@ function NavBar() {
           <div className='row' style={{ justifyContent: "center" }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
                 onClick={handleCloseNavMenu}
                 sx={{ color: 'white', display: 'block', paddingLeft: 5, paddingRight: 5 }}
               >
                 <Typography variant="body2" color="black" fontFamily="ClashDisplay-Regular">
-                  {page}
+                  <a href={page.link}>
+                    {page.name}
+                  </a>
                 </Typography>
               </Button>
             ))}

@@ -55,6 +55,7 @@ const items = [
 const Page = () => {
     return (
         <div className={"body"}>
+            <div className={"title"}>Choississez un thème sur lequel vous former</div>
             <div className={"theme--wrapper"}>
                 {items.map((item, index) => (
                     <ThemeItem  key={index} item={item} />

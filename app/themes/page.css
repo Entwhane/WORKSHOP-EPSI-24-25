@@ -2,15 +2,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 2% 10%;
     justify-content: center;
 }
+
+.title {
+    font-size: 36px;
+    margin: 20px 0;
+    align-self: flex-start;
+
+}
+
 .theme--wrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: 2% 10%;
-    justify-content: space-evenly;
-    height: 60vh;
+    justify-content: space-between;
     align-items: center;
 }
 
