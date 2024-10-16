@@ -8,7 +8,6 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <div className="col" style={{ justifyContent: 'space-around' }}>
-      <NavBar />
       <div className="col" style={{ flexGrow: 1, justifyContent: 'space-around', marginTop: 50, paddingInline: 50 }}>
         <Grid container justifyContent={"center"} alignItems={"center"} sx={{ marginBlock: 'auto' }}>
           <Grid size={9} container justifyContent={"center"} alignItems={"center"} spacing={4} sx={{ marginBlock: 'auto' }}>
@@ -60,7 +59,6 @@ export default function Home() {
           </Grid>
         </Grid>
       </div>
-      <Footer />
     </div>
   );
 }
