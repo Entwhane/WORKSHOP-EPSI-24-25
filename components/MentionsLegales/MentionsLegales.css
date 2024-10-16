@@ -1,0 +1,35 @@
+body {
+    background-color: #f7f3f3;
+}
+
+.mentions_container {
+    background-color: white;
+    box-shadow: -10px 0 10px -10px black, /* ombre à gauche */
+                10px 0 10px -10px black;
+}
+
+.mentions_content_container {
+    border-radius: 5px;
+    border: 2px solid #00AFB9;
+    justify-content: space-between;
+}
+
+.mentions_content_div {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #00AFB9;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.mentions_content_div div h4 {
+    margin: 5px;
+}
+
+.mentions_content_div div p {
+    font-size: small;
+}

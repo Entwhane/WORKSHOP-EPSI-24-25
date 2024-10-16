@@ -10,7 +10,7 @@ const Footer = () => {
       <Grid container justifyContent={"space-between"} spacing={12}>
         <Grid size={6}>
           <Typography variant="body2" color="white" align="left">
-            Mentions légales
+            <a href="/mentions">Mentions légales</a>
           </Typography>
           <Typography variant="body2" color="white" align="left">
             Contact
