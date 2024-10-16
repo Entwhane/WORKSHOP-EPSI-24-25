@@ -15,6 +15,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Grid2';
 import AdbIcon from '@mui/icons-material/Adb';
+import Link from "next/link";
 
 const pages = [
   {name: 'Thèmes', link: '/themes'},
@@ -86,16 +87,20 @@ function NavBar() {
         </Grid>
         <Grid size={4} sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
           <Grid container flexDirection="row" justifyContent="flex-end" spacing={2}>
-            <Button color='#F07167' sx={{ backgroundColor: "#F07167", borderRadius: 1, paddingLeft: 2, paddingRight: 2 }}>
-              <Typography variant="body2" color="white" fontWeight="900" fontFamily="ClashDisplay-Regular">
-                connexion
-              </Typography>
-            </Button>
-            <Button color='#0081A7' sx={{ backgroundColor: "#0081A7", borderRadius: 1, paddingLeft: 2, paddingRight: 2 }}>
-              <Typography variant="body2" color="white" fontWeight="900" fontFamily="ClashDisplay-Regular">
-                inscription
-              </Typography>
-            </Button>
+            <Link href={"/auth/login"}>
+              <Button color='#F07167' sx={{ backgroundColor: "#F07167", borderRadius: 1, paddingLeft: 2, paddingRight: 2 }}>
+                <Typography variant="body2" color="white" fontWeight="900" fontFamily="ClashDisplay-Regular">
+                  connexion
+                </Typography>
+              </Button>
+            </Link>
+            <Link href={"/auth/register"}>
+              <Button color='#0081A7' sx={{ backgroundColor: "#0081A7", borderRadius: 1, paddingLeft: 2, paddingRight: 2 }}>
+                <Typography variant="body2" color="white" fontWeight="900" fontFamily="ClashDisplay-Regular">
+                  inscription
+                </Typography>
+              </Button>
+            </Link>
           </Grid>
         </Grid>
         <Grid size={1} sx={{ flexGrow: 1, display: { xs: 'block', md: 'none' } }}>
