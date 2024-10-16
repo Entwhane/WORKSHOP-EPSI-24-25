@@ -1,0 +1,41 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2% 10%;
+    justify-content: center;
+}
+
+.title {
+    font-size: 36px;
+    margin: 20px 0;
+    align-self: flex-start;
+}
+
+.theme--wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.plus--btn {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: white;
+    border: 2px solid #0081A7;
+    cursor: pointer;
+    width: 200px;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.plus--btn:hover {
+    border: 2px solid #00BF8F;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4)
+}
