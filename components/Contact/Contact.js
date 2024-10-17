@@ -57,7 +57,7 @@ const Contact = () => {
     };
 
     return (
-        <Container className="contact_container" maxWidth="xl" style={{padding: 20, width: '30%'}}>
+        <Container className="contact_container" maxWidth="xl" style={{ padding: 20 }}>
             <h2 style={{marginLeft: '10%'}}>
                 Une question ?
             </h2>
