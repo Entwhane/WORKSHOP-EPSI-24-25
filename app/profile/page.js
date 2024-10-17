@@ -5,22 +5,23 @@ import "./page.css";
 import ProfileFormation from "../../components/ProfileFormation/ProfileFormation";
 import SchoolIcon from '@mui/icons-material/School';
 import EditIcon from '@mui/icons-material/Edit';
+import { useEffect, useState } from 'react';
 
 const Page = () => {
     const searchParams = useSearchParams()
     const id = searchParams.get('id')
 
-    // Fetch user here with useeffet hook
+    const [user, setUser] = useState(null);
 
-    const user = {
-        id: id,
-        name:"Pierre",
-        picture: "/images/default_user.jpg",
-        formations: [
-            {name: "Cyberharcélement", progress: 0.5, link: "/formation/1"},
-            {name: "Vol d'identité", progress: 0.3, link: "/formation/2"},
-            {name: "Réseaux sociaux", progress: 1, link: "/formation/3"},
-        ]
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
+
+    if (!user) {
+        return <div>Loading...</div>;
     }
 
     return (
@@ -28,9 +29,9 @@ const Page = () => {
             <div className={"profile__header"}>
                 <div className={"profile__background"}></div>
                 <div className={"profile__bottom"}>
-                    <div className={"profile__avatar"} style={{ background: `url(${user.picture})`, borderRadius: 500,backgroundSize: "contain", width:80, height:80}}></div>
+                    <div className={"profile__avatar"} style={{ background: `grey`, borderRadius: 500,backgroundSize: "contain", width:80, height:80}}></div>
                     <div className={"profile__infos"}>
-                        <div className={"profile__username"}>{user.name}</div>
+                        <div className={"profile__username"}>{user.user_name}</div>
                         <div className={"profile__level"}>Enseignement supérieur</div>
                     </div>
                 </div>
@@ -53,11 +54,13 @@ const Page = () => {
 
             <div className={"profile__progress"}>
                 <div className={"profile__progress__title"}>Formations en cours</div>
+                {/*
                 <div className={"profile__progress__formations"}>
                     {user.formations.map((item, index) => (
                         <ProfileFormation item={item} index={index} key={index}/>
                     ))}
                 </div>
+                */ }
             </div>
         </div>
     );
