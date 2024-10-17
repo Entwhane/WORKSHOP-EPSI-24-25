@@ -13,7 +13,7 @@ const Footer = () => {
             <a href="/mentions">Mentions légales</a>
           </Typography>
           <Typography variant="body2" color="white" align="left">
-            Contact
+            <a href="/contact">Contact</a>
           </Typography>
         </Grid>
         <Grid size={6}>
