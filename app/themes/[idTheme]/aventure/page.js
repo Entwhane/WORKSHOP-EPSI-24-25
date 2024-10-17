@@ -2,34 +2,47 @@
 
 import Grid from "@mui/material/Grid2";
 import { Typography } from "@mui/material";
-
 import WebView from "../../../../components/Webview/Webview";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../../../lib/firebase"; // Chemin vers ton fichier de configuration Firebase
 
-export default function AdventurePage() {
 
-    const quizz = [
-        {
-            id: 1,
-            title: "Combien de personnes sont touchées par le cyber harcèlement chaque année ?",
-            answers: [
-                {
-                    id: 1,
-                    title: "12000",
-                    correct: true,
-                },
-                {
-                    id: 2,
-                    title: "25",
-                    correct: false,
-                },
-                {
-                    id: 3,
-                    title: "1000502",
-                    correct: false,
-                },
-            ]
+export default function AdventurePage(props) {
+
+    const { params } = props
+    const { idTheme } = params
+    const [game, setGame] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchGame = async () => {
+        try {
+            const gameRef = doc(db, "Games", idTheme);
+            const gameSnapshot = await getDoc(gameRef);
+
+            if (!gameSnapshot.exists()) {
+                throw new Error("Game non trouvée");
+            }
+
+            const gameData = { id: gameSnapshot.id, ...gameSnapshot.data() };
+            setGame(gameData)
+            setLoading(false)
+        } catch (error) {
+            console.error("Erreur lors de la récupération du mode aventure :", error);
         }
-    ]
+    };
+
+    useEffect(() => {
+        fetchGame();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="center" style={{ display: "flex", flexGrow: 1 }}>
+                <p>Chargement du mode aventure...</p>
+            </div>
+        )
+    }
 
     return (
         <div className="col">
@@ -66,7 +79,7 @@ export default function AdventurePage() {
                             {" "}cyber harcèlement
                         </Typography>
                     </Typography>
-                    <WebView url={"http://ec2-35-180-205-74.eu-west-3.compute.amazonaws.com"} />
+                    <WebView url={game.game_url} />
                 </div>
             </Grid>
         </div>

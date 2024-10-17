@@ -6,46 +6,63 @@ import { Typography } from "@mui/material";
 import QuizzDetails from "../../../../components/QuizzDetails/QuizzDetail";
 import HomeButton from "../../../../components/HomeButton/HomeButton";
 import Separator from "../../../../components/Separator/Separator";
+import { collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
+import { db } from "../../../../lib/firebase"; // Chemin vers ton fichier de configuration Firebase
 
 export default function QuizzPage(props) {
-  const { idTheme } = props
+  const { params } = props
+  const { idTheme } = params
+  const [quizz, setQuizz] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // const [posts, setPosts] = useState(null)
- 
-  // useEffect(() => {
-  //   async function fetchPosts() {
-  //     let res = await fetch('https://api.vercel.app/blog')
-  //     let data = await res.json()
-  //     setPosts(data)
-  //   }
-  //   fetchPosts()
-  // }, [])
- 
-  // if (!posts) return <div>Loading...</div>
+  const fetchQuestionsWithResponses = async () => {
+    try {
+      const questionsRef = collection(db, "Questions");
+      const questionQuery = query(questionsRef, where("game_id", "==", doc(db, "Games", idTheme)));
+      const questionsSnapshot = await getDocs(questionQuery);
 
-  const quizz = [
-    {
-      id: 1,
-      title: "Combien de personnes sont touchées par le cyber harcèlement chaque année ?",
-      answers: [
-        {
-          id: 1,
-          title: "12000",
-          correct: true,
-        },
-        {
-          id: 2,
-          title: "25",
-          correct: false,
-        },
-        {
-          id: 3,
-          title: "1000502",
-          correct: false,
-        },
-      ]
+      const questions = await Promise.all(
+        questionsSnapshot.docs.map(async (questionDoc) => {
+          const questionData = { id: questionDoc.id, ...questionDoc.data() };
+
+          const responsesRef = collection(db, "Responses");
+          const responsesQuery = query(responsesRef, where("question_id", "==", questionDoc.ref));
+          const responsesSnapshot = await getDocs(responsesQuery);
+
+          const responses = responsesSnapshot.docs.map((responseDoc) => ({
+            id: responseDoc.id,
+            ...responseDoc.data(),
+          }));
+
+          // Optional: Sort responses by a specific key, e.g., id or title
+          responses.sort((a, b) => (a.title > b.title ? 1 : -1));
+
+          return {
+            ...questionData,
+            responses,
+          };
+        })
+      );
+
+      setQuizz(questions);
+      setLoading(false);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des données :", error);
+      return [];
     }
-  ]
+  };
+
+  useEffect(() => {
+    fetchQuestionsWithResponses();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="center" style={{ display: "flex", flexGrow: 1 }}>
+        <p>Chargement des questionnaires...</p>
+      </div>
+    )
+  }
 
   return (
     <div className="col">
