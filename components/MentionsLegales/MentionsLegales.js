@@ -44,7 +44,7 @@ const MentionsLegales = () => {
     ];
 
     return (
-        <Container className="mentions_container" maxWidth="xl" style={{ padding: 20, width: '70%' }}>
+        <div className="mentions_container">
             <h1 style={{textAlign: 'center', marginBottom: 50, marginTop: 50}}>
                 Mentions Légales
             </h1>
@@ -75,7 +75,7 @@ const MentionsLegales = () => {
                 </div>
                 <p>Mise à jour du 16/10/2024</p>
             </div>
-        </Container>
+        </div>
     );
 };
 

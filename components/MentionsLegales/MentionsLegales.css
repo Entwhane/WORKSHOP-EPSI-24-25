@@ -4,8 +4,11 @@ body {
 
 .mentions_container {
     background-color: white;
-    box-shadow: -10px 0 10px -10px black, /* ombre à gauche */
-                10px 0 10px -10px black;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    max-width: 900px;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .mentions_content_container {
