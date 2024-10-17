@@ -22,23 +22,14 @@ const settings = ['Thèmes', 'FAQ', 'À propos', 'Account'];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
 
   return (
     <Container maxWidth="xl" style={{ maxHeight:"60px", backgroundColor: 'white', padding: 10 }}>

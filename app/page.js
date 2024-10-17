@@ -1,9 +1,7 @@
-import NavBar from "../components/Navbar/Navbar";
-import Footer from "../components/Footer/Footer";
 import Grid from "@mui/material/Grid2";
-import { Box, Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import HomeButton from "../components/HomeButton/HomeButton";
-import Image from 'next/image';
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -36,11 +34,13 @@ export default function Home() {
                   {" "}RÉSEAUX SOCIAUX
                 </Typography>
               </Typography>
-              <Button style={{ padding: 10, marginTop: 20 }} sx={{ width: '270px', background: 'linear-gradient(90deg, #0081A7 0%, #F07167 100%)', borderRadius: 1 }}>
-                <Typography color="white" fontWeight="900" style={{ fontFamily: 'ClashDisplay-Regular' }}>
-                  JE COMMENCE
-                </Typography>
-              </Button>
+              <Link href={`/themes`}>
+                <div className="row center" style={{ padding: 10, marginTop: 20, width: '270px', background: 'linear-gradient(90deg, #0081A7 0%, #F07167 100%)', borderRadius: 5 }}>
+                  <Typography color="white" fontWeight="900" style={{ fontFamily: 'ClashDisplay-Regular' }}>
+                    JE COMMENCE
+                  </Typography>
+                </div>
+              </Link>
             </Grid>
             <Grid size={6} sx={{ display: { xs: 'none', md: 'block' } }}>
               <img src="/images/home.jpg" alt="Home Image" style={{ width: '100%', padding: 10 }} />
