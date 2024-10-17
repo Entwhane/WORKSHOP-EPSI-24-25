@@ -1,0 +1,28 @@
+.profile-card {
+    width: 115px;
+    padding: 20px;
+    margin-bottom: 3%;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.profile-name {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.profile-job {
+    font-size: 10px;
+    color: #777;
+}

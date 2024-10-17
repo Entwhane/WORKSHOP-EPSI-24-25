@@ -14,6 +14,14 @@ yarn.lock
 /.next/
 /out/
 
+.idea
+firebasecli
+firebase.json
+firebase-debug.log
+.next
+package-lock.json
+
+
 # production
 /build
 

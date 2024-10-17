@@ -1,0 +1,22 @@
+body {
+    background-color: #f7f3f3;
+}
+
+.contact_container {
+    background-color: #ffffff;
+    box-shadow: -10px 0 10px -10px black, /* ombre à gauche */
+    10px 0 10px -10px black;
+}
+
+form div {
+    width: 100%;
+}
+
+.itemForm {
+    width: 100%;
+    background-color: white;
+    border: solid 2px #00AFB9;
+    border-radius: 5px;
+    padding: 10px;
+    color: black;
+}
