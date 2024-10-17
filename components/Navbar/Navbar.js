@@ -89,9 +89,9 @@ function NavBar() {
             <Grid container flexDirection="row" justifyContent="flex-end" spacing={2}>
               {user ? (
                   <div className={"navbar__connected"}>
-                    <Link href={`/profile?id=${user.user_id}`}>
+                    <Link href={`/profile?id=${user.uid}`}>
                       <div variant="body2" fontFamily="ClashDisplay-Regular">
-                        {user.user_name}
+                        {user.email}
                       </div>
                     </Link>
                     <div onClick={handleLogout} variant="body2" fontFamily="ClashDisplay-Regular">
