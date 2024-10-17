@@ -1,0 +1,40 @@
+.formation {
+    display: flex;
+    flex-direction: row;
+    padding: 20px 30px;
+    align-items: center;
+    margin: 10px 0;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f0f0f0;
+}
+
+.formation__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #171717;
+    width: 30%;
+}
+
+.formation__progress {
+    display: flex;
+    flex-direction: row;
+    max-width: 30%;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 5px;
+    flex: 1;
+}
+
+.formation__cta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    background-color: #054d62;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}

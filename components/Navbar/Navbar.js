@@ -41,7 +41,7 @@ function NavBar() {
 
 
   return (
-    <Container maxWidth="xl" style={{ backgroundColor: 'white', padding: 10 }}>
+    <Container maxWidth="xl" style={{ maxHeight:"60px", backgroundColor: 'white', padding: 10 }}>
       <Grid container flexDirection="row" justifyContent={"space-between"} alignItems={"center"}>
         <Grid size={{ xs: 11, md: 4 }}>
           <Grid container flexDirection="row">
