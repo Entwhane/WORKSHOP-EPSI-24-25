@@ -114,8 +114,6 @@ export async function POST(req) {
 export async function GET(req, { params }) {
     const { userId } = params;
 
-    console.log(params);
-
     try {
         const userDoc = await getDoc(doc(db, "Users", userId));
         if (!userDoc.exists()) {

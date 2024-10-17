@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation'
 import "./page.css";
 import ProfileFormation from "../../components/ProfileFormation/ProfileFormation";
@@ -7,7 +7,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import EditIcon from '@mui/icons-material/Edit';
 import { useEffect, useState } from 'react';
 
-const Page = () => {
+const ProfileComponent = () => {
     const searchParams = useSearchParams()
     const id = searchParams.get('id')
 
@@ -66,5 +66,13 @@ const Page = () => {
     );
 };
 
-export default Page;
+const ProfilePage = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ProfileComponent />
+        </Suspense>
+    );
+};
+
+export default ProfilePage;
 

@@ -62,8 +62,8 @@ export default function GamesPage() {
                 {games.map((item, index) => {
                     if (item.questionCount || item.game_url) {
                         return (
-                            <Grid size={{ xs: 11, sm: 10, md: 4 }}>
-                                <ThemeItem key={index} item={item} />
+                            <Grid key={index} size={{ xs: 11, sm: 10, md: 4 }}>
+                                <ThemeItem item={item} />
                             </Grid>
                         )
                     }
