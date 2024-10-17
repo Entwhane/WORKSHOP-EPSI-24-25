@@ -4,12 +4,14 @@ body {
 
 .contact_container {
     background-color: #ffffff;
-    box-shadow: -10px 0 10px -10px black, /* ombre à gauche */
-    10px 0 10px -10px black;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px 0;
+    width: 400px;
 }
 
 form div {
-    width: 100%;
+    width: 80%;
 }
 
 .itemForm {
@@ -19,4 +21,18 @@ form div {
     border-radius: 5px;
     padding: 10px;
     color: black;
+    font-family: ClashDisplay-Regular, sans-serif;
+}
+
+.btn__contact {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #0081A7 0%, #F07167 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin: 20px 0;
+    font-size: 18px;
+    height: 50px;
 }

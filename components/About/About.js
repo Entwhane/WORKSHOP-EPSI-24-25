@@ -39,7 +39,7 @@ const About = () => {
     ]
 
     return (
-        <Container className="about_container" maxWidth="xl" style={{ padding: 20, width: '70%' }}>
+        <div className="about_container" >
             <div style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -62,7 +62,8 @@ const About = () => {
                         flexDirection: "row",
                         flexWrap: "wrap",
                         justifyContent: "space-between",
-                        marginTop: 50
+                        marginTop: 50,
+                        padding: 20
                     }}>
                         {equipe.map((equipier, index) => (
                             <ProfileCard
@@ -75,7 +76,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
-        </Container>
+        </div>
     );
 };
 

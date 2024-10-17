@@ -75,7 +75,7 @@ const Contact = () => {
                         placeholder="Nom"
                         value={formData.name}
                         onChange={handleChange}
-                        style={{ marginTop: 50 }}
+                        style={{ marginTop: 20 }}
                     />
                     {errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
                 </div>
@@ -87,7 +87,7 @@ const Contact = () => {
                         placeholder="Email"
                         value={formData.email}
                         onChange={handleChange}
-                        style={{ marginTop: 30 }}
+                        style={{ marginTop: 10 }}
                     />
                     {errors.email && <p style={{color: 'red'}}>{errors.email}</p>}
                 </div>
@@ -98,11 +98,11 @@ const Contact = () => {
                         placeholder="Message ..."
                         value={formData.message}
                         onChange={handleChange}
-                        style={{ marginTop: 30, height: 150 }}
+                        style={{ marginTop: 10, height: 150 }}
                     />
                     {errors.message && <p style={{color: 'red'}}>{errors.message}</p>}
                 </div>
-                <button type="submit" style={{ width: "100%", height: 40, marginTop: 50, background: 'linear-gradient(90deg, #0081A7, #F07167)' }}>Envoyer</button>
+                <button className={"btn__contact"} type="submit">Envoyer</button>
             </form>
         </Container>
     );
