@@ -7,14 +7,41 @@ import QuizzDetails from "../../../../components/QuizzDetails/QuizzDetail";
 import HomeButton from "../../../../components/HomeButton/HomeButton";
 import Separator from "../../../../components/Separator/Separator";
 import { collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
-import { db } from "../../../../lib/firebase"; // Chemin vers ton fichier de configuration Firebase
+import { db } from "../../../../lib/firebase";
 
 export default function QuizzPage(props) {
   const { params } = props
   const { idTheme } = params
   const [quizz, setQuizz] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
   const [score, setScore] = useState(0);
+  const [topic, setTopic] = useState({});
+
+  const fetchTopic = async () => {
+    try {
+      const gameRef = doc(db, "Games", idTheme);
+      const gameSnapshot = await getDoc(gameRef);
+
+      if (!gameSnapshot.exists()) {
+        throw new Error("Game non trouvée");
+      }
+
+      const topicId = gameSnapshot.data().topic_id;
+      const topicSnapshot = await getDoc(topicId);
+
+      if (!topicSnapshot.exists()) {
+        throw new Error("Topic non trouvé");
+      }
+
+      const topicData = { id: topicSnapshot.id, ...topicSnapshot.data() };
+
+      setTopic(topicData);
+      setLoading(false);
+    } catch (error) {
+      console.error("Erreur lors de la récupération du topic :", error);
+    }
+  };
 
   const fetchQuestionsWithResponses = async () => {
     try {
@@ -35,7 +62,6 @@ export default function QuizzPage(props) {
             ...responseDoc.data(),
           }));
 
-          // Optional: Sort responses by a specific key, e.g., id or title
           responses.sort((a, b) => (a.title > b.title ? 1 : -1));
 
           return {
@@ -54,6 +80,7 @@ export default function QuizzPage(props) {
   };
 
   useEffect(() => {
+    fetchTopic();
     fetchQuestionsWithResponses();
   }, []);
 
@@ -66,7 +93,8 @@ export default function QuizzPage(props) {
   }
 
   const pourcentage = score / quizz.length * 100
-  
+  const allQuestionsAnswered = quizz.length === questionsAnswered
+
   let cardColor = 'red'
   if (pourcentage > 66) {
     cardColor = 'green'
@@ -94,60 +122,61 @@ export default function QuizzPage(props) {
             backgroundColor: "white"
           }}
         >
-          <Typography fontSize={32} style={{ marginBlock: 50 }} fontFamily={"ClashDisplay-Regular"}>
-            20 questions sur le
-            <Typography
-              component={"span"}
-              fontSize={32}
-              style={{
-                background: 'linear-gradient(161.06deg, #063F50 40.32%, #7FBFC2 70.2%, #FDFCDC 100.08%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontWeight: "900"
-              }}
-            >
-              {" "}cyber harcèlement
+          <Typography
+            fontSize={32}
+            style={{
+              background: 'linear-gradient(161.06deg, #063F50 40.32%, #7FBFC2 70.2%, #FDFCDC 100.08%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              fontWeight: "900",
+              marginBlock: 50
+            }}
+          >
+            {topic.topic_name}
+            <Typography fontSize={32} fontFamily={"ClashDisplay-Regular"} component={"span"}>
+              {" "}(quizz de {quizz.length} questions)
             </Typography>
           </Typography>
           <Grid container style={{ marginBlock: 50, }}>
             {quizz.map((question) => (
               <Grid key={question.id} size={12} style={{ marginBlock: 20 }}>
-                <QuizzDetails quizz={question} setScore={setScore} />
+                <QuizzDetails quizz={question} setScore={setScore} setQuestionsAnswered={setQuestionsAnswered} />
               </Grid>
             ))}
           </Grid>
-          <Separator color="#0081A7" />
-          <div className="col center" style={{ marginBlock: 50 }}>
-            <Grid container flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
-              <Typography
-                style={{
-                  background: 'linear-gradient(161.06deg, #063F50 40.32%, #7FBFC2 70.2%, #FDFCDC 100.08%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  fontWeight: "500",
-                  fontSize: 32
-                }}
-              >
-                Bilan
-              </Typography>
-              <Typography
-                style={{
-                  fontWeight: "400",
-                  fontSize: 20
-                }}
-              >
-                Vous avez obtenu :
-              </Typography>
-            </Grid>
-            <Grid container size={10} spacing={4} justifyContent={"center"} style={{ marginBlock: 50 }}>
-              <Grid size={{ xs: 11, sm: 10, md: 6 }}>
-                <HomeButton title={`${pourcentage}%`} subtitle="De bonnes réponses" color={cardColor} />
-              </Grid>
-              <Grid size={{ xs: 11, sm: 10, md: 6 }}>
-                <HomeButton title="57" subtitle="Minutes d’entrainement écoulées" color="#0081A7" />
-              </Grid>
-            </Grid>
-          </div>
+          {allQuestionsAnswered && (
+            <>
+              <Separator color="#0081A7" />
+              <div className="col center" style={{ marginBlock: 50 }}>
+                <Grid container flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
+                  <Typography
+                    style={{
+                      background: 'linear-gradient(161.06deg, #063F50 40.32%, #7FBFC2 70.2%, #FDFCDC 100.08%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      fontWeight: "500",
+                      fontSize: 32
+                    }}
+                  >
+                    Bilan
+                  </Typography>
+                  <Typography
+                    style={{
+                      fontWeight: "400",
+                      fontSize: 20
+                    }}
+                  >
+                    Vous avez obtenu :
+                  </Typography>
+                </Grid>
+                <Grid container size={10} spacing={4} justifyContent={"center"} style={{ marginBlock: 50 }}>
+                  <Grid size={{ xs: 11, sm: 10, md: 6 }}>
+                    <HomeButton title={`${pourcentage}%`} subtitle="De bonnes réponses" color={cardColor} />
+                  </Grid>
+                </Grid>
+              </div>
+            </>
+          )}
         </div>
       </Grid>
     </div>

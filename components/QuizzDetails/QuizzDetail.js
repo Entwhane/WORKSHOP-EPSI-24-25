@@ -3,7 +3,7 @@ import { Button, Typography } from "@mui/material";
 import "./QuizzDetails.css"
 
 export default function QuizzDetails(props) {
-    const { quizz, setScore } = props;
+    const { quizz, setScore, setQuestionsAnswered } = props;
     const [selectedAnswer, setSelectedAnswer] = useState(null);
 
     const handleAnswerClick = (answer) => {
@@ -11,6 +11,7 @@ export default function QuizzDetails(props) {
         if (answer.is_correct) {
             setScore(prevScore => prevScore + 1);
         }
+        setQuestionsAnswered(prevScore => prevScore + 1)
     };
 
     return (
