@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import "./page.css";
+import {useAuth} from "../../context/AuthContext";
+import {useRouter} from "next/navigation";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
@@ -10,6 +12,9 @@ const LoginPage = () => {
     const [error, setError] = useState("");
 
     const auth = getAuth();
+    const { user, setUser, logout } = useAuth();
+
+    const router = useRouter();
 
     // Gestion de la soumission du formulaire
     const handleSubmit = async (e) => {
@@ -19,8 +24,10 @@ const LoginPage = () => {
             // Connexion de l'utilisateur via Firebase Auth
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
+
+            setUser(user);
             // Redirection ou autre traitement après connexion réussie
-            alert("Connexion réussie !");
+            router.push("/");
         } catch (error) {
             console.error("Erreur de connexion:", error.message);
             setError("Erreur de connexion : " + error.message);
