@@ -14,6 +14,7 @@ export default function QuizzPage(props) {
   const { idTheme } = params
   const [quizz, setQuizz] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [score, setScore] = useState(0);
 
   const fetchQuestionsWithResponses = async () => {
     try {
@@ -64,6 +65,15 @@ export default function QuizzPage(props) {
     )
   }
 
+  const pourcentage = score / quizz.length * 100
+  
+  let cardColor = 'red'
+  if (pourcentage > 66) {
+    cardColor = 'green'
+  } else if (pourcentage > 33) {
+    cardColor = 'orange'
+  }
+
   return (
     <div className="col">
       <Grid
@@ -102,7 +112,7 @@ export default function QuizzPage(props) {
           <Grid container style={{ marginBlock: 50, }}>
             {quizz.map((question) => (
               <Grid key={question.id} size={12} style={{ marginBlock: 20 }}>
-                <QuizzDetails quizz={question} />
+                <QuizzDetails quizz={question} setScore={setScore} />
               </Grid>
             ))}
           </Grid>
@@ -131,7 +141,7 @@ export default function QuizzPage(props) {
             </Grid>
             <Grid container size={10} spacing={4} justifyContent={"center"} style={{ marginBlock: 50 }}>
               <Grid size={{ xs: 11, sm: 10, md: 6 }}>
-                <HomeButton title="96%" subtitle="De bonnes réponses" color="#0081A7" />
+                <HomeButton title={`${pourcentage}%`} subtitle="De bonnes réponses" color={cardColor} />
               </Grid>
               <Grid size={{ xs: 11, sm: 10, md: 6 }}>
                 <HomeButton title="57" subtitle="Minutes d’entrainement écoulées" color="#0081A7" />
