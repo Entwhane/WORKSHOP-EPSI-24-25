@@ -14,11 +14,11 @@ import Image from 'next/image';
 
 const pages = [
   { name: 'Thèmes', link: '/themes' },
+  { name: 'À propos', link: '/about' },
   { name: 'FAQ', link: '/faq' },
-  { name: 'À propos', link: '/about' }
 ]
 
-const settings = ['Thèmes', 'FAQ', 'À propos', 'Account'];
+const settings = ['Thèmes', 'FAQ', 'À propos', 'Contact'];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -34,7 +34,7 @@ function NavBar() {
   return (
     <Container maxWidth="xl" style={{ maxHeight:"60px", backgroundColor: 'white', padding: 10 }}>
       <Grid container flexDirection="row" justifyContent={"space-between"} alignItems={"center"}>
-        <Grid size={{ xs: 11, md: 4 }}>
+        <Grid size={{ xs: 11, md: 3 }}>
           <Grid container flexDirection="row">
             <Image src="/images/logo.png" alt="Logo" width={20} height={20} style={{ margin: 10 }} />
             <Typography
@@ -54,7 +54,7 @@ function NavBar() {
             </Typography>
           </Grid>
         </Grid>
-        <Grid size={4} sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
+        <Grid size={6} sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
           <div className='row' style={{ justifyContent: "center" }}>
             {pages.map((page) => (
               <Button
@@ -71,7 +71,7 @@ function NavBar() {
             ))}
           </div>
         </Grid>
-        <Grid size={4} sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
+        <Grid size={3} sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }}>
           <Grid container flexDirection="row" justifyContent="flex-end" spacing={2}>
             <Link href={"/auth/login"}>
               <Button color='#F07167' sx={{ backgroundColor: "#F07167", borderRadius: 1, paddingLeft: 2, paddingRight: 2 }}>
