@@ -67,7 +67,7 @@ const MentionsLegales = () => {
                 </div>
                 <div>
                     <h4>Hébergeur</h4>
-                    <p>Site web : [site web de l'hébergeur]</p>
+                    <p>Site web : [site web de l&apos;hébergeur]</p>
                 </div>
                 <div>
                     <h4>Siège social</h4>

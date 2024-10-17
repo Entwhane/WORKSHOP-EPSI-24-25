@@ -1,103 +1,110 @@
-'use client';
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '../../../app/context/AuthContext';
+"use client"; // Indique que c'est un Client Component
+
+import React, { useState } from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { useRouter } from 'next/navigation'; // Importation de useRouter pour la redirection
+import { db } from "../../../lib/firebase"; // Firestore db import
 import "./page.css";
 
-const Page = () => {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [etablissement, setEtablissement] = useState("");
-    const [level, setLevel] = useState(0);
+const RegisterPage = () => {
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        username: "",
+        email: "",
+        school: "",
+        level: "",
+        password: "",
+        confirmPassword: "",
+    });
     const [error, setError] = useState("");
+    const auth = getAuth();
+    const router = useRouter(); // Utilisation de useRouter pour la redirection
 
-    const router = useRouter();
-    const { register } = useAuth();
+    // Gestion des changements de formulaire
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
 
-    const handleRegister = async (e) => {
+    // Gestion de la soumission du formulaire
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setError("");
 
-        if (password !== confirmPassword) {
-            setError("Les mots de passe ne correspondent pas");
+        if (formData.password !== formData.confirmPassword) {
+            setError("Les mots de passe ne correspondent pas.");
             return;
         }
 
         try {
-            let res;
-            switch (level) {
-                case "primaire":
-                    res = 1;
-                    break;
-                case "college":
-                    res = 2;
-                    break;
-                case "lycee":
-                    res = 3;
-                    break;
-                case "sup":
-                    res = 4;
-                    break;
-                default:
-                    res = 0;
-                    break;
-            }
+            // Création de l'utilisateur via Firebase Auth
+            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+            const user = userCredential.user;
 
-            const userData = {
-                firstName,
-                lastName,
-                email,
-                password,
-                etablissement,
-                level: res
-            };
+            // Enregistrement des informations supplémentaires dans Firestore
+            await addDoc(collection(db, "users"), {
+                userId: user.uid,
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                username: formData.username,
+                email: formData.email,
+                school: formData.school,
+                level: formData.level,
+                createdAt: new Date().toISOString(),
+            });
 
-            const result = await register(userData);
+            // Redirection vers la page d'accueil après inscription réussie
+            router.push("/"); // Rediriger l'utilisateur vers la page d'accueil
 
-            if (result.success) {
-                router.push('/');
-            } else {
-                setError(result.error || "Une erreur s'est produite lors de l'inscription");
-            }
-        } catch (e) {
-            console.error("Error registering user: ", e);
-            setError("Une erreur s'est produite lors de l'inscription");
+        } catch (error) {
+            console.error("Erreur d'inscription:", error.message);
+            setError(error.message);
         }
     };
 
     return (
         <div className={"body__register"}>
-            <h1 className={"register__title"}>Register</h1>
-            <form className={"register__form"} onSubmit={handleRegister}>
-                {error && <div className="error-message" style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
-
+            <h1 className={"register__title"}>Inscription</h1>
+            <form className={"register__form"} onSubmit={handleSubmit}>
                 <div className={"register__section__title"}>Identité</div>
                 <div className={"register__section register__section__identite"}>
                     <input
                         className={"register__input"}
-                        type={"text"}
-                        placeholder={"Prénom"}
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
+                        type="text"
+                        name="firstName"
+                        placeholder="Prénom"
+                        value={formData.firstName}
+                        onChange={handleChange}
                         required
                     />
                     <input
                         className={"register__input"}
-                        type={"text"}
-                        placeholder={"Nom"}
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
+                        type="text"
+                        name="lastName"
+                        placeholder="Nom"
+                        value={formData.lastName}
+                        onChange={handleChange}
                         required
                     />
                     <input
                         className={"register__input"}
-                        type={"email"}
-                        placeholder={"Email"}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        name="username"
+                        placeholder="Nom d'utilisateur"
+                        value={formData.username}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        className={"register__input"}
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
                     />
                 </div>
@@ -106,10 +113,11 @@ const Page = () => {
                 <div className={"register__section"}>
                     <input
                         className={"register__input"}
-                        type={"text"}
-                        placeholder={"Établissement"}
-                        value={etablissement}
-                        onChange={(e) => setEtablissement(e.target.value)}
+                        type="text"
+                        name="school"
+                        placeholder="Établissement"
+                        value={formData.school}
+                        onChange={handleChange}
                         required
                     />
                     <fieldset className={"register__level"}>
@@ -119,9 +127,9 @@ const Page = () => {
                                 <input
                                     type="radio"
                                     id="lv1"
-                                    name="niveau"
+                                    name="level"
                                     value="primaire"
-                                    onChange={(e) => setLevel(e.target.value)}
+                                    onChange={handleChange}
                                     required
                                 />
                                 <label htmlFor="lv1">École primaire</label>
@@ -130,9 +138,9 @@ const Page = () => {
                                 <input
                                     type="radio"
                                     id="lv2"
-                                    name="niveau"
+                                    name="level"
                                     value="college"
-                                    onChange={(e) => setLevel(e.target.value)}
+                                    onChange={handleChange}
                                 />
                                 <label htmlFor="lv2">Collège</label>
                             </div>
@@ -140,9 +148,9 @@ const Page = () => {
                                 <input
                                     type="radio"
                                     id="lv3"
-                                    name="niveau"
+                                    name="level"
                                     value="lycee"
-                                    onChange={(e) => setLevel(e.target.value)}
+                                    onChange={handleChange}
                                 />
                                 <label htmlFor="lv3">Lycée</label>
                             </div>
@@ -150,9 +158,9 @@ const Page = () => {
                                 <input
                                     type="radio"
                                     id="lv4"
-                                    name="niveau"
+                                    name="level"
                                     value="sup"
-                                    onChange={(e) => setLevel(e.target.value)}
+                                    onChange={handleChange}
                                 />
                                 <label htmlFor="lv4">Enseignement supérieur</label>
                             </div>
@@ -164,24 +172,28 @@ const Page = () => {
                 <div className={"register__section register__section__mdp"}>
                     <input
                         className={"register__input"}
-                        type={"password"}
-                        placeholder={"Mot de passe"}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                        name="password"
+                        placeholder="Mot de passe"
+                        value={formData.password}
+                        onChange={handleChange}
                         required
                     />
                     <input
                         className={"register__input"}
-                        type={"password"}
-                        placeholder={"Confirmer le mot de passe"}
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        type="password"
+                        name="confirmPassword"
+                        placeholder="Confirmer le mot de passe"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
                         required
                     />
                 </div>
 
+                {error && <div className="error-message">{error}</div>}
+
                 <div className={"register__section"}>
-                    <button className={"register__button"}>Inscription</button>
+                    <button className={"register__button"} type="submit">Inscription</button>
                     <div className={"link__login"}>Déjà membre ? <a href={"/auth/login"}>Connexion</a></div>
                 </div>
             </form>
@@ -189,4 +201,4 @@ const Page = () => {
     );
 };
 
-export default Page;
+export default RegisterPage;
