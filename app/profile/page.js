@@ -16,7 +16,6 @@ const ProfileComponent = () => {
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
-            console.log("Utilisateur trouvé dans localStorage :", storedUser);
             setUser(JSON.parse(storedUser));
         } else {
             console.error("Aucun utilisateur trouvé dans localStorage");
@@ -27,8 +26,6 @@ const ProfileComponent = () => {
         console.error("Les informations de l'utilisateur ne sont pas disponibles");
         return <div>Loading...</div>;
     }
-
-    console.log("Données utilisateur affichées :", user);
 
     return (
         <div className={"body__profile"}>
