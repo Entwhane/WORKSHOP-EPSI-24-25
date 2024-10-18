@@ -61,7 +61,7 @@ export async function POST(req) {
             user_password: body.user_password,
             user_level_school: body.user_level_school,
             user_type: body.user_type,
-            user_created_date: new Date().toISOString(), // Date de création
+            user_created_date: new Date().toISOString(),
         });
         return new Response(JSON.stringify({ id: newUserRef.id }), { status: 201 });
     } catch (error) {
@@ -110,7 +110,6 @@ export async function POST(req) {
  *         description: Utilisateur non trouvé
  */
 
-// GET: Récupérer un utilisateur par ID
 export async function GET(req, { params }) {
     const { userId } = params;
 
@@ -127,7 +126,7 @@ export async function GET(req, { params }) {
 
 /**
  * @swagger
- * /api/users/{userId}:
+ * /users/{userId}:
  *   put:
  *     summary: Mettre à jour un utilisateur
  *     description: Mettre à jour les détails d'un utilisateur spécifique.
@@ -175,7 +174,6 @@ export async function GET(req, { params }) {
  *         description: Erreur serveur
  */
 
-// PUT: Mettre à jour un utilisateur
 export async function PUT(req, { params }) {
     const { userId } = params;
     const body = await req.json();
@@ -191,7 +189,7 @@ export async function PUT(req, { params }) {
 
 /**
  * @swagger
- * /api/users/{userId}:
+ * /users/{userId}:
  *   delete:
  *     summary: Supprimer un utilisateur
  *     description: Supprimer un utilisateur de la base de données.
@@ -212,7 +210,6 @@ export async function PUT(req, { params }) {
  *         description: Erreur serveur
  */
 
-// DELETE: Supprimer un utilisateur
 export async function DELETE(req, { params }) {
     const { userId } = params;
 

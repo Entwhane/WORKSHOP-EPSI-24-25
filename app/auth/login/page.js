@@ -1,32 +1,34 @@
-"use client"; // Indique que c'est un Client Component
-
+'use client';
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/navigation";
 import "./page.css";
-import {useAuth} from "../../context/AuthContext";
-import {useRouter} from "next/navigation";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
-    const auth = getAuth();
-    const { user, setUser, logout } = useAuth();
-
     const router = useRouter();
+    const auth = getAuth();
 
-    // Gestion de la soumission du formulaire
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            // Connexion de l'utilisateur via Firebase Auth
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            setUser(user);
-            // Redirection ou autre traitement après connexion réussie
+            const token = await user.getIdToken();
+
+            localStorage.setItem("user", JSON.stringify({
+                user_name: user.user_name,
+                email: user.email,
+                uid: user.uid,
+                token: token
+            }));
+
+            console.log("Utilisateur stocké dans localStorage :", localStorage.getItem("user"));
+
             router.push("/");
         } catch (error) {
             console.error("Erreur de connexion:", error.message);

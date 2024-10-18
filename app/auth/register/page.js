@@ -11,7 +11,7 @@ const RegisterPage = () => {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
-        username: "",
+        user_name: "", // Correction ici pour user_name
         email: "",
         school: "",
         level: "",
@@ -26,7 +26,7 @@ const RegisterPage = () => {
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value, // Assurez-vous que le nom des champs correspond aux clés de formData
         });
     };
 
@@ -49,7 +49,7 @@ const RegisterPage = () => {
                 userId: user.uid,
                 firstName: formData.firstName,
                 lastName: formData.lastName,
-                username: formData.username,
+                user_name: formData.user_name, // Utilisez user_name ici
                 email: formData.email,
                 school: formData.school,
                 level: formData.level,
@@ -92,9 +92,9 @@ const RegisterPage = () => {
                     <input
                         className={"register__input"}
                         type="text"
-                        name="username"
+                        name="user_name" // Ici, on utilise user_name pour être cohérent
                         placeholder="Nom d'utilisateur"
-                        value={formData.username}
+                        value={formData.user_name} // Correction ici
                         onChange={handleChange}
                         required
                     />
