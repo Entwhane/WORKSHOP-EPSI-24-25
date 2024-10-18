@@ -1,17 +1,17 @@
-"use client"; // Indique que c'est un Client Component
+"use client";
 
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
-import { useRouter } from 'next/navigation'; // Importation de useRouter pour la redirection
-import { db } from "../../../lib/firebase"; // Firestore db import
+import { useRouter } from 'next/navigation';
+import { db } from "../../../lib/firebase";
 import "./page.css";
 
 const RegisterPage = () => {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
-        user_name: "", // Correction ici pour user_name
+        user_name: "",
         email: "",
         school: "",
         level: "",
@@ -20,17 +20,15 @@ const RegisterPage = () => {
     });
     const [error, setError] = useState("");
     const auth = getAuth();
-    const router = useRouter(); // Utilisation de useRouter pour la redirection
+    const router = useRouter();
 
-    // Gestion des changements de formulaire
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value, // Assurez-vous que le nom des champs correspond aux clés de formData
+            [e.target.name]: e.target.value,
         });
     };
 
-    // Gestion de la soumission du formulaire
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -40,24 +38,21 @@ const RegisterPage = () => {
         }
 
         try {
-            // Création de l'utilisateur via Firebase Auth
             const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
 
-            // Enregistrement des informations supplémentaires dans Firestore
             await addDoc(collection(db, "users"), {
                 userId: user.uid,
                 firstName: formData.firstName,
                 lastName: formData.lastName,
-                user_name: formData.user_name, // Utilisez user_name ici
+                user_name: formData.user_name,
                 email: formData.email,
                 school: formData.school,
                 level: formData.level,
                 createdAt: new Date().toISOString(),
             });
 
-            // Redirection vers la page d'accueil après inscription réussie
-            router.push("/"); // Rediriger l'utilisateur vers la page d'accueil
+            router.push("/");
 
         } catch (error) {
             console.error("Erreur d'inscription:", error.message);
