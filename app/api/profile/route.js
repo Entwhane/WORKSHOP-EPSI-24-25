@@ -1,5 +1,5 @@
-import { db } from '../../../lib/firebase';
-import { auth } from '../../../lib/firebase-admin';
+/*import { db } from '../../../lib/firebase';
+import { auth } from '../../../lib/firebaseAdmin';
 
 export async function GET(req) {
     const token = req.headers.get("Authorization")?.split("Bearer ")[1];
@@ -29,4 +29,4 @@ export async function GET(req) {
         console.error("Erreur lors de la vérification du token ou récupération des infos :", error);
         return new Response(JSON.stringify({ error: 'Token invalide ou erreur serveur' }), { status: 401 });
     }
-}
+}*/
