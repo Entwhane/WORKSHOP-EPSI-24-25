@@ -45,17 +45,14 @@ import { db } from "../../../../lib/firebase";
  *         description: Erreur serveur
  */
 
-// POST: Créer un nouvel utilisateur
 export async function POST(req) {
     const { email, password, user_name, user_level_school, user_type } = await req.json();
     const auth = getAuth();
 
     try {
-        // Créer l'utilisateur avec Firebase Auth
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Ajouter des informations supplémentaires dans Firestore
         await addDoc(collection(db, "users"), {
             user_name,
             email,
@@ -152,7 +149,6 @@ export async function GET(req, { params }) {
  *         description: Erreur serveur
  */
 
-// PUT: Mettre à jour un utilisateur
 export async function PUT(req, { params }) {
     const { userId } = params;
     const { email, password, ...updatedData } = await req.json();
@@ -202,11 +198,9 @@ export async function DELETE(req, { params }) {
     const userRef = doc(db, "users", userId);
 
     try {
-        // Supprimer l'utilisateur de Firebase Authentication
         const user = auth.currentUser;
         await deleteUser(user);
 
-        // Supprimer les données de l'utilisateur de Firestore
         await deleteDoc(userRef);
 
         return new Response(JSON.stringify({ message: "Utilisateur supprimé" }), { status: 204 });
