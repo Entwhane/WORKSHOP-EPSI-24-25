@@ -1,4 +1,3 @@
-// app/layout.js
 'use client';
 import localFont from "next/font/local";
 import "../styles/main.css";

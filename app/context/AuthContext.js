@@ -1,34 +1,40 @@
-// app/context/AuthContext.js
-'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
-import { collection, getDocs, query, where, addDoc } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
+import app from '../../lib/firebase';
 
-const AuthContext = createContext({});
+const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const auth = getAuth(app);
+    const router = useRouter();
 
     useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-        setLoading(false);
-    }, []);
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+            } else {
+                setUser(null);
+            }
+            setLoading(false);
+        });
 
+        return () => unsubscribe();
+    }, [auth]);
 
-    const logout = () => {
-        localStorage.removeItem('user');
+    const logout = async () => {
+        await signOut(auth);
         setUser(null);
+        router.push('/auth/login');
     };
 
     return (
-        <AuthContext.Provider value={{ user, setUser, logout, loading }}>
-            {children}
+        <AuthContext.Provider value={{ user, setUser, logout }}>
+            {!loading && children}
         </AuthContext.Provider>
     );
-}
+};
 
 export const useAuth = () => useContext(AuthContext);
